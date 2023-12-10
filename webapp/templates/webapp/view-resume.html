@@ -1,0 +1,63 @@
+{% extends 'webapp/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load myfilter %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Resume</title>
+
+
+</head>
+<body>
+    {% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 shadow p-5 offset-sm-1">
+
+                <div class="name" style="text-align: center;">
+                    <strong>
+
+                        {{resume.name | upper}}
+    
+                    </strong>
+                </div>
+
+            {% if resume.profile_image %}
+            <img src="{{resume.profile_image.url}}" alt="" class="img-fluid img-thumbnail float-end mt-5" width="150" height="150">
+            {% else %}
+            <p>No profile image available</p>
+            {% endif %}
+            <p><strong>Name: </strong>{{ resume.name}}</p> 
+            <p><strong>Date Of Birth: </strong>{{resume.dob}}</p> 
+            <p><strong>Gender: </strong>{{resume.gender}}</p> 
+            <p><strong>Locality: </strong>{{resume.locality}}</p> 
+            <p><strong>City: </strong>{{resume.city}}</p> 
+            <p><strong>PIN Code: </strong>{{resume.pin}}</p> 
+            <p><strong>State: </strong>{{resume.state}}</p> 
+            <p><strong>Mobile No.: </strong>{{resume.mobile}}</p> 
+            <p><strong>Email: </strong>{{resume.email}}</p> 
+            <p><strong>Job Preferred Cities: </strong>{{resume.job_city | remove_special:"[]'"}}</p> 
+
+            <p>Attachment: <a href="{{resume.my_file.url}}">Download File</a></p>
+
+                <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+        
+                <a href="{% url 'update-resume' resume.id%}" class="btn btn-info">Update Resume</a>
+                
+                <a href="{% url 'delete-resume' resume.id %}" class="btn btn-danger">Delete Resume</a>
+            
+        </div>
+        </div>
+    </div>
+
+    
+
+    {% endblock content %}
+</body>
+</html>

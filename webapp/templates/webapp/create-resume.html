@@ -1,0 +1,39 @@
+{% extends 'webapp/base.html' %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title> 
+</head>
+<body>
+    {% block content %}
+
+    <div class="container bg-light shadow-md p-5 form-layout">
+        <h3>Add Details</h3>
+
+        <hr><br>
+
+        <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{form.as_p}}
+
+            <br>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary">Go Back</a>
+
+        </form>
+
+    </div>
+
+    {% endblock content %}
+
+    
+</body>
+</html>

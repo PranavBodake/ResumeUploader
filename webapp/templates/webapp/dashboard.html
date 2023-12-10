@@ -1,0 +1,82 @@
+{% extends 'webapp/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    {% block content %}
+    <h1>Welcome {{request.user}}</h1>
+
+    <hr>
+
+    <a href="{% url 'create-resume' %}" class="btn btn-primary btn-sm">
+        Add a new Resume &nbsp; <i class="fa fa-plus-circle" aria-hidden="true"></i>
+    </a>
+
+    <hr>
+
+    
+
+    <table class="table table-light table-hover">
+
+        <thead class="table-light">
+
+            <tr>
+                <th scope="col">ID</th>
+                
+                <th scope="col">Name</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Locality</th>
+                <th scope="col">City</th>
+                <th scope="col">Pin</th>
+                <th scope="col">State</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Email</th>
+                
+                
+
+                <th scope="col">View</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            
+
+                {% for resume in resumes %}
+
+            <tr>
+                <td>{{forloop.counter}} </td>
+                <td>{{resume.name}} </td>
+                <td>{{resume.dob}} </td>
+                <td>{{resume.gender}} </td>
+                <td>{{resume.locality}} </td>
+                <td>{{resume.city}} </td>
+                <td>{{resume.pin}} </td>
+                <td>{{resume.state}} </td>
+                <td>{{resume.mobile}} </td>
+                <td>{{resume.email}} </td>
+               
+                <td><a class="btn btn-success btn-sm" href="{% url 'view-resume' resume.id %}">&nbsp;<i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                
+                
+            </tr>
+
+                {% endfor %}
+
+            
+        </tbody>
+
+    </table>
+   
+
+    {% endblock content %}
+    
+</body>
+</html>
